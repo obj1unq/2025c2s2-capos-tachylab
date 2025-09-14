@@ -1,0 +1,44 @@
+import capos.*
+
+describe "Test unitarios para Rolando" {
+
+    method initialize() {
+        rolando.mochila().clear()
+    }
+    test "Comportamiento 'encontrar' de Rolando (artefacto cualquiera)" {
+        rolando.encontrar(espadaDestino)
+        assert.that(rolando.mochila().contains(espadaDestino))
+    }
+
+    test "Caso limite de la mochila de Rolando (capacidad máxima de 2 artefactos)" {
+        rolando.encontrar(espadaDestino)
+        rolando.encontrar(libroHechizos)
+        rolando.encontrar(collarDivino)
+        assert.that(rolando.mochila() == #{espadaDestino, libroHechizos})
+    }
+
+    test "Comportamiento 'almacenarEnCastillo' de Rolando (artefacto cualquiera)" {
+        rolando.encontrar(espadaDestino)
+        rolando.almacenarEnCastillo(espadaDestino)
+        assert.that(castilloPiedra.almacenamiento().contains(espadaDestino))
+        assert.notThat(rolando.mochila().contains(espadaDestino))
+    }
+
+    test "Comportamiento 'posesionesActuales' de Rolando (unión de posesiones en la mochila y en el castillo de piedra)" {
+        rolando.mochila().add(armaduraValyrio)
+        castilloPiedra.almacenar(espadaDestino)
+        assert.that(rolando.posesionesActuales() == #{armaduraValyrio, espadaDestino})
+    }
+}
+
+describe "Test unitarios para el Castillo de Piedra" {
+
+    method initialize() {
+        castilloPiedra.almacenamiento().clear()
+    }
+
+    test "Comportamiento 'almacenar' del Castillo de Piedra (artefacto cualquiera)" {
+        castilloPiedra.almacenar(espadaDestino)
+        assert.that(castilloPiedra.almacenamiento().contains(espadaDestino))
+    }
+}
