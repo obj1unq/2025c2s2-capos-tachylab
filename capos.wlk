@@ -1,9 +1,11 @@
 //Rolando y el castillo de piedra
 object rolando {
     // Atributos (Constantes y Variables)
-    const mochila = #{}
+    var poderBase = 3
 
-    const capacidadMochila = 2
+    var capacidadMochila = 2
+
+    const mochila = #{}
 
     const historialEncuentros = []
 
@@ -14,6 +16,18 @@ object rolando {
 
     method historialEncuentros() {
         return historialEncuentros
+    }
+
+    method poderBase() {
+        return poderBase
+    }
+
+    method capacidadMochila(_capacidadMochila) {
+        capacidadMochila = _capacidadMochila
+    }
+
+    method poderBase(_poderBase) {
+        poderBase = _poderBase
     }
 
     // Métodos Funcionales
@@ -33,6 +47,11 @@ object rolando {
         return mochila.union(castilloPiedra.almacenamiento())
     }
 
+    method poderPeleaTotal() {
+
+    }
+
+    method pelearBatalla()
 }
 
 object castilloPiedra {
@@ -52,17 +71,47 @@ object castilloPiedra {
 
 // Artefactos
 object espadaDestino {
+    var fueUsada = false
 
+    method aportePoder(portador) {
+        if (not fueUsada) {
+            return portador.poderBase()
+        }
+        else {
+            return portador.poderBase() * 0.5
+        }
+
+    }
+
+    method efectoBatalla(portador) {
+        fueUsada = true
 }
-
+}
 object libroHechizos {
 
 }
 
 object collarDivino {
+    var usosEnBatalla = 0
 
+    const poderBase = 3
+
+    method efectoBatalla(portador) {
+        if (portador.poderBase() > 6) {
+            usosEnBatalla += 1
+        }
+    }
+
+    method aportePoder(portador) {
+        return poderBase
+    }
 }
 
 object armaduraValyrio {
+    const poderBase = 6
+
+    method aportePoder(portador) {
+        return poderBase
+    }
 
 }

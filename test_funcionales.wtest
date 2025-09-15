@@ -8,7 +8,8 @@ describe "Parte 1 (referencias)" {
         rolando.encontrar(espadaDestino)
         rolando.encontrar(libroHechizos)
         assert.that(rolando.mochila() == #{espadaDestino, libroHechizos})
-        assert.throwsException({ rolando.encontrar(collarDivino) })
+        rolando.encontrar(collarDivino)
+        assert.that(rolando.mochila() == #{espadaDestino, libroHechizos})
     }
 
     test "1.2 Castillo de piedra (introducción al castillo de piedra como forma de guardar artefactos)" {
@@ -27,7 +28,6 @@ describe "Parte 1 (referencias)" {
         castilloPiedra.almacenar(collarDivino)
         assert.that(rolando.posesionesActuales() == #{armaduraValyrio, espadaDestino, collarDivino})
         assert.notThat(rolando.posesionesActuales().contains(libroHechizos))
-
     }
 
     test "1.4 Conocer la historia de los encuentros de Rolando con los artefactos" {
@@ -39,5 +39,20 @@ describe "Parte 1 (referencias)" {
         rolando.encontrar(armaduraValyrio)
         rolando.encontrar(collarDivino)
         assert.that(rolando.historialEncuentros() == [espadaDestino, libroHechizos, collarDivino, armaduraValyrio, collarDivino])
+    }
+}
+
+describe "Parte 2 (mensajes con bloques)" {
+    method initialize() {
+        rolando.mochila().clear()
+        rolando.poderBase(5)
+        rolando.capacidadMochila(3)
+        castilloPiedra.almacenamiento().clear()
+    }
+
+    test "2.1 Comportamiento de los artefactos (ejemplo batalla)" {
+        rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
+        assert.that(espadaDestino.aportePoder(rolando) == 5)
+        assert.that(armaduraValyrio.aportePoder(rolando) == 6)
     }
 }
