@@ -5,6 +5,8 @@ object rolando {
 
     var capacidadMochila = 2
 
+    var casa = castilloPiedra
+
     const mochila = #{}
 
     const historialEncuentros = []
@@ -30,6 +32,10 @@ object rolando {
         poderBase = _poderBase
     }
 
+    method casa(_casa) {
+        casa = _casa
+    }
+
     // Métodos Funcionales
     method encontrar(artefacto) {
         historialEncuentros.add(artefacto)
@@ -38,9 +44,9 @@ object rolando {
         }
     }
 
-    method almacenarEnCastillo(artefacto) {
+    method almacenarEnCasa(artefacto) {
         mochila.remove(artefacto)
-        castilloPiedra.almacenar(artefacto)
+        casa.almacenar(artefacto)
     }
 
     method posesionesActuales() {
@@ -73,8 +79,14 @@ object castilloPiedra {
 
 // Artefactos
 object espadaDestino {
+    //Atributos (variables y constantes)
     var fueUsada = false
 
+    //Metodos Lookers (Getters y Setters)
+    method fueUsada(_fueUsada) {
+        fueUsada = _fueUsada
+    }
+    //Metodos funcionales
     method aportePoder(portador) {
         if (not fueUsada) {
             return portador.poderBase()
@@ -94,10 +106,17 @@ object libroHechizos {
 }
 
 object collarDivino {
+    //Atributos (variables y constantes)
     var usosEnBatalla = 0
 
     const poderBase = 3
 
+    //Metodos Lookers (Getters y Setters)
+    method usosEnBatalla(_usosEnBatalla) {
+        usosEnBatalla = _usosEnBatalla
+    }
+
+    //Metodos funcionales
     method efectoBatalla() {
         usosEnBatalla += 1
     }

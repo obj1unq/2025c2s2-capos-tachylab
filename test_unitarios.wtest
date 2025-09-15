@@ -19,7 +19,7 @@ describe "Test unitarios para Rolando" {
 
     test "Comportamiento 'almacenarEnCastillo' de Rolando (artefacto cualquiera)" {
         rolando.encontrar(espadaDestino)
-        rolando.almacenarEnCastillo(espadaDestino)
+        rolando.almacenarEnCasa(espadaDestino)
         assert.that(castilloPiedra.almacenamiento().contains(espadaDestino))
         assert.notThat(rolando.mochila().contains(espadaDestino))
     }
@@ -40,5 +40,27 @@ describe "Test unitarios para el Castillo de Piedra" {
     test "Comportamiento 'almacenar' del Castillo de Piedra (artefacto cualquiera)" {
         castilloPiedra.almacenar(espadaDestino)
         assert.that(castilloPiedra.almacenamiento().contains(espadaDestino))
+    }
+}
+
+describe "Test unitarios para los artefactos" {
+    method initialize() {
+        espadaDestino.fueUsada(false)
+        collarDivino.usosEnBatalla(0)
+    }
+
+    test "Testeando poder y efecto de batalla de la espada del destino (usando a rolando)" {
+        rolando.poderBase(5)
+        assert.that(espadaDestino.aportePoder(rolando) == 5)
+        espadaDestino.efectoBatalla()
+        assert.that(espadaDestino.aportePoder(rolando) == 2.5)
+    }
+
+    test "Testeando poder y efecto de batalla del collar divino (usando a rolando)" {
+        rolando.poderBase(5)
+        assert.that(collarDivino.aportePoder(rolando) == 3)
+        rolando.poderBase(7)
+        collarDivino.efectoBatalla()
+        assert.that(collarDivino.aportePoder(rolando) == 4)
     }
 }

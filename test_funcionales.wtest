@@ -15,10 +15,10 @@ describe "Parte 1 (referencias)" {
     test "1.2 Castillo de piedra (introducción al castillo de piedra como forma de guardar artefactos)" {
         rolando.encontrar(espadaDestino)
         rolando.encontrar(libroHechizos)
-        rolando.almacenarEnCastillo(espadaDestino)
-        rolando.almacenarEnCastillo(libroHechizos)
+        rolando.almacenarEnCasa(espadaDestino)
+        rolando.almacenarEnCasa(libroHechizos)
         rolando.encontrar(collarDivino)
-        rolando.almacenarEnCastillo(collarDivino)
+        rolando.almacenarEnCasa(collarDivino)
         assert.that(castilloPiedra.almacenamiento() == #{espadaDestino, libroHechizos, collarDivino})
     }
 
@@ -34,8 +34,8 @@ describe "Parte 1 (referencias)" {
         rolando.encontrar(espadaDestino)
         rolando.encontrar(libroHechizos)
         rolando.encontrar(collarDivino)
-        rolando.almacenarEnCastillo(espadaDestino)
-        rolando.almacenarEnCastillo(libroHechizos)
+        rolando.almacenarEnCasa(espadaDestino)
+        rolando.almacenarEnCasa(libroHechizos)
         rolando.encontrar(armaduraValyrio)
         rolando.encontrar(collarDivino)
         assert.that(rolando.historialEncuentros() == [espadaDestino, libroHechizos, collarDivino, armaduraValyrio, collarDivino])
@@ -66,5 +66,14 @@ describe "Parte 2 (mensajes con bloques)" {
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
         assert.that(collarDivino.aportePoder(rolando) == 5)
         rolando.pelearBatalla()
+        rolando.poderBase(8)
+        assert.that(espadaDestino.aportePoder(rolando) == 4)
+        assert.that(armaduraValyrio.aportePoder(rolando) == 6)
+        assert.that(collarDivino.aportePoder(rolando) == 6)
+    }
+
+    test "2.1 Comportamiento de los artefactos (ejemplo poder de pelea)" {
+        rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
+        assert.that(rolando.poderPeleaTotal() == 19)
     }
 }
