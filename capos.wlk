@@ -60,6 +60,10 @@ object rolando {
     method pelearBatalla() {
         mochila.forEach({artefacto => artefacto.efectoBatalla()})
     }
+
+    method artefactoMasPoderoso() {
+        return self.posesionesActuales().max({artefacto => artefacto.aportePoder(self)})
+    }
 }
 
 object castilloPiedra {
@@ -86,6 +90,7 @@ object espadaDestino {
     method fueUsada(_fueUsada) {
         fueUsada = _fueUsada
     }
+
     //Metodos funcionales
     method aportePoder(portador) {
         if (not fueUsada) {
@@ -102,7 +107,17 @@ object espadaDestino {
 }
 }
 object libroHechizos {
+    //Atributos (variables y constantes)
+    const listaHechizos = []
 
+    //Metodos funcionales
+
+    method proximoHechizo() {
+        return listaHechizos.first()
+    }
+    method aportePoder(portador) {
+        return self.proximoHechizo().poderHechizo(portador)
+    }
 }
 
 object collarDivino {
@@ -127,17 +142,44 @@ object collarDivino {
         }
         return poderBase
     }
+
 }
 
 object armaduraValyrio {
+    //Atributos (variables y constantes)
+
     const poderBase = 6
+    //Metodos Lookers (Getters y Setters)
 
     method aportePoder(portador) {
         return poderBase
     }
 
-    method efectoBatalla() {
+    method efectoBatalla() {}
+}
 
+//Hechizos
+
+object bendicion {
+    //Metodos funcionales
+
+    method efectoHechizo(portador) {
+        return 4
     }
+}
 
+object invisibilidad {
+    //Metodos funcionales
+
+    method efectoHechizo(portador) {
+        return portador.poderBase()
+    }
+}
+
+object invocacion {
+    //Metodos funcionales
+
+    method efectoHechizo(portador) {
+        portador.artefactoMasPoderoso()
+    }
 }
