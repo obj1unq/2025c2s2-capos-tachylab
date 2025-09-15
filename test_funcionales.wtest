@@ -54,5 +54,17 @@ describe "Parte 2 (mensajes con bloques)" {
         rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
         assert.that(espadaDestino.aportePoder(rolando) == 5)
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
+        assert.that(collarDivino.aportePoder(rolando) == 3)
+        rolando.pelearBatalla()
+        rolando.poderBase(6)
+        assert.that(espadaDestino.aportePoder(rolando) == 3)
+        assert.that(armaduraValyrio.aportePoder(rolando) == 6)
+        assert.that(collarDivino.aportePoder(rolando) == 3)
+        rolando.pelearBatalla()
+        rolando.poderBase(7)
+        assert.that(espadaDestino.aportePoder(rolando) == 3.5)
+        assert.that(armaduraValyrio.aportePoder(rolando) == 6)
+        assert.that(collarDivino.aportePoder(rolando) == 5)
+        rolando.pelearBatalla()
     }
 }

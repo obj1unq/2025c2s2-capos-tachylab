@@ -48,10 +48,12 @@ object rolando {
     }
 
     method poderPeleaTotal() {
-
+        return poderBase + mochila.sum({artefacto => artefacto.aportePoder(self)})
     }
 
-    method pelearBatalla()
+    method pelearBatalla() {
+        mochila.forEach({artefacto => artefacto.efectoBatalla()})
+    }
 }
 
 object castilloPiedra {
@@ -83,7 +85,7 @@ object espadaDestino {
 
     }
 
-    method efectoBatalla(portador) {
+    method efectoBatalla() {
         fueUsada = true
 }
 }
@@ -96,13 +98,14 @@ object collarDivino {
 
     const poderBase = 3
 
-    method efectoBatalla(portador) {
-        if (portador.poderBase() > 6) {
-            usosEnBatalla += 1
-        }
+    method efectoBatalla() {
+        usosEnBatalla += 1
     }
 
     method aportePoder(portador) {
+        if (portador.poderBase() > 6) {
+            return poderBase + usosEnBatalla
+        }
         return poderBase
     }
 }
@@ -112,6 +115,10 @@ object armaduraValyrio {
 
     method aportePoder(portador) {
         return poderBase
+    }
+
+    method efectoBatalla() {
+
     }
 
 }
