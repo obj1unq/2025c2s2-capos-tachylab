@@ -104,8 +104,8 @@ describe "Parte 2 (mensajes con bloques)" {
 
     test "2.5 Artefacto fatal" {
         rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
-        rolando.poderBase(15)
+        rolando.poderBase(14)
         assert.that(#{rolando.artefactoFatal(astra)}.contains(espadaDestino))
-        assert.that(rolando.artefactoFatal(caterina).contains(espadaDestino))
+        assert.throwsException({rolando.artefactoFatal(caterina)})
     }
 }
