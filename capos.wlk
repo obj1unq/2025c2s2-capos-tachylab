@@ -46,6 +46,10 @@ object rolando {
         return self.poderPeleaTotal() > enemigo.poderPelea()
     }
 
+    method esPoderoso() {
+        return self.enemigosDerrotables() == enemigos
+    }
+
     // Métodos Funcionales
     method encontrar(artefacto) {
         historialEncuentros.add(artefacto)
