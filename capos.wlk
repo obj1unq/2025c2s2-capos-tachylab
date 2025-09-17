@@ -50,6 +50,9 @@ object rolando {
         return self.enemigosDerrotables() == enemigos
     }
 
+    method esFatalContra(artefacto, enemigo) {
+        return (poderBase + artefacto.aportePoder(self)) > enemigo.poderPelea()
+    }
     // Métodos Funcionales
     method encontrar(artefacto) {
         historialEncuentros.add(artefacto)
@@ -87,6 +90,10 @@ object rolando {
     method moradasConquistables() {
         const enemigosDerrotables = self.enemigosDerrotables()
         return enemigosDerrotables.map({enemigo => enemigo.casa()}).asSet()
+    }
+
+    method artefactoFatal(enemigo) {
+        return mochila.find({artefacto => self.esFatalContra(artefacto, enemigo)})
     }
 }
 
