@@ -56,17 +56,14 @@ describe "Parte 2 (mensajes con bloques)" {
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
         assert.that(collarDivino.aportePoder(rolando) == 3)
         rolando.pelearBatalla()
-        rolando.poderBase(6)
         assert.that(espadaDestino.aportePoder(rolando) == 3)
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
         assert.that(collarDivino.aportePoder(rolando) == 3)
         rolando.pelearBatalla()
-        rolando.poderBase(7)
         assert.that(espadaDestino.aportePoder(rolando) == 3.5)
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
         assert.that(collarDivino.aportePoder(rolando) == 5)
         rolando.pelearBatalla()
-        rolando.poderBase(8)
         assert.that(espadaDestino.aportePoder(rolando) == 4)
         assert.that(armaduraValyrio.aportePoder(rolando) == 6)
         assert.that(collarDivino.aportePoder(rolando) == 6)
@@ -75,5 +72,18 @@ describe "Parte 2 (mensajes con bloques)" {
     test "2.1 Comportamiento de los artefactos (ejemplo poder de pelea)" {
         rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
         assert.that(rolando.poderPeleaTotal() == 19)
+    }
+
+    test "2.2 Libro de hechizos" {
+        rolando.mochila().add(libroHechizos)
+        castilloPiedra.almacenamiento().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
+        libroHechizos.listaHechizos().addAll([bendicion, invisibilidad, invocacion])
+        assert.that(libroHechizos.aportePoder(rolando) == 4)
+        rolando.pelearBatalla()
+        assert.that(libroHechizos.aportePoder(rolando) == 6)
+        rolando.pelearBatalla()
+        assert.that(libroHechizos.aportePoder(rolando) == 7)
+        rolando.pelearBatalla()
+        assert.that(libroHechizos.aportePoder(rolando) == 0)
     }
 }

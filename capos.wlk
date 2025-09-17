@@ -59,10 +59,11 @@ object rolando {
 
     method pelearBatalla() {
         mochila.forEach({artefacto => artefacto.efectoBatalla()})
+        poderBase += 1
     }
 
-    method artefactoMasPoderoso() {
-        return self.posesionesActuales().max({artefacto => artefacto.aportePoder(self)})
+    method poderArtefactoMasPoderosoGuardado() {
+        return casa.poderArtefactoMasPoderoso(self)
     }
 }
 
@@ -78,6 +79,11 @@ object castilloPiedra {
     // Métodos Funcionales
     method almacenar(artefacto) {
         almacenamiento.add(artefacto)
+    }
+
+    method poderArtefactoMasPoderoso(dueño) {
+        const poderesArtefactos = almacenamiento.map({artefacto => artefacto.aportePoder(dueño)})
+        return poderesArtefactos.max()
     }
 }
 
@@ -110,13 +116,27 @@ object libroHechizos {
     //Atributos (variables y constantes)
     const listaHechizos = []
 
+    //Metodos Lookers (Getters y Setters)
+    method listaHechizos() {
+        return listaHechizos
+    }
+
     //Metodos funcionales
 
     method proximoHechizo() {
         return listaHechizos.first()
     }
+
+    method efectoBatalla() {
+        listaHechizos.remove(self.proximoHechizo())
+    }
     method aportePoder(portador) {
-        return self.proximoHechizo().poderHechizo(portador)
+        if (listaHechizos.isEmpty()) {
+            return 0
+        }
+        else {
+            return self.proximoHechizo().efectoHechizo(portador)
+        }
     }
 }
 
@@ -180,6 +200,6 @@ object invocacion {
     //Metodos funcionales
 
     method efectoHechizo(portador) {
-        portador.artefactoMasPoderoso()
+        return portador.poderArtefactoMasPoderosoGuardado()
     }
 }
