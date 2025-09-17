@@ -11,6 +11,7 @@ object rolando {
 
     const historialEncuentros = []
 
+    const enemigos = #{}
     //Metodos Lookers (Getters y Setters)
     method mochila() {
         return mochila
@@ -24,6 +25,10 @@ object rolando {
         return poderBase
     }
 
+    method enemigos() {
+        return enemigos
+    } 
+
     method capacidadMochila(_capacidadMochila) {
         capacidadMochila = _capacidadMochila
     }
@@ -34,6 +39,11 @@ object rolando {
 
     method casa(_casa) {
         casa = _casa
+    }
+
+    //Metodos de validaciones y condiciones
+    method puedeVencer(enemigo) {
+        return self.poderPeleaTotal() > enemigo.poderPelea()
     }
 
     // Métodos Funcionales
@@ -64,6 +74,15 @@ object rolando {
 
     method poderArtefactoMasPoderosoGuardado() {
         return casa.poderArtefactoMasPoderoso(self)
+    }
+
+    method enemigosDerrotables() {
+        return enemigos.filter({enemigo => self.puedeVencer(enemigo)})
+    }
+
+    method moradasConquistables() {
+        const enemigosDerrotables = self.enemigosDerrotables()
+        return enemigosDerrotables.map({enemigo => enemigo.casa()}).asSet()
     }
 }
 

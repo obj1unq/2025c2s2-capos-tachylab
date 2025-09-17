@@ -88,6 +88,9 @@ describe "Parte 2 (mensajes con bloques)" {
     }
 
     test "2.3 Enemigos" {
-        
-    }
+        rolando.mochila().addAll(#{espadaDestino, armaduraValyrio, collarDivino})
+        rolando.enemigos().addAll(#{caterina, archibaldo, astra})
+        assert.that(rolando.enemigosDerrotables() == #{archibaldo, astra})
+        assert.that(rolando.moradasConquistables() == #{torreMarfil, palacioMarmol})
+        }
 }
