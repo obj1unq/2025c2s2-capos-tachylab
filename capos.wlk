@@ -203,3 +203,63 @@ object invocacion {
         return portador.poderArtefactoMasPoderosoGuardado()
     }
 }
+
+//Enemigos
+
+object caterina {
+    //Atributos (Variables y Constantes)
+    const poderPelea = 28
+
+    const casa = fortalezaAcero
+    //Metodos funcionales
+    method poderPelea() {
+        return poderPelea
+    }
+
+    method casa() {
+        return casa
+    }
+}
+
+object archibaldo {
+    //Atributos (Variables y Constantes)
+    const poderPelea = 16
+
+    const casa = palacioMarmol
+    //Metodos funcionales
+    method poderPelea() {
+        return poderPelea
+    }
+
+    method casa() {
+        return casa
+    }
+}
+
+object astra {
+    //Atributos (Variables y Constantes)
+    const poderPelea = 14
+
+    const casa = torreMarfil
+    //Metodos funcionales
+    method poderPelea() {
+        return poderPelea
+    }
+
+    method casa() {
+        return casa
+    }
+
+}
+
+//Moradas  de enemigos
+
+object fortalezaAcero {
+}
+
+object palacioMarmol {
+}
+
+object torreMarfil {
+}
+

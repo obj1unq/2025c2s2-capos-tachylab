@@ -86,4 +86,8 @@ describe "Parte 2 (mensajes con bloques)" {
         rolando.pelearBatalla()
         assert.that(libroHechizos.aportePoder(rolando) == 0)
     }
+
+    test "2.3 Enemigos" {
+        
+    }
 }
