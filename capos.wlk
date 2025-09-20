@@ -51,7 +51,7 @@ object rolando {
     }
 
     method esFatalContra(artefacto, enemigo) {
-        return (poderBase + artefacto.aportePoder(self)) > enemigo.poderPelea()
+        return artefacto.aportePoder(self) > enemigo.poderPelea()
     }
     // Métodos Funcionales
     method encontrar(artefacto) {
